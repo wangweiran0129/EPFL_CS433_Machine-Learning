@@ -2,7 +2,6 @@
 """some helper functions."""
 import numpy as np
 
-
 def load_data(sub_sample=True, add_outlier=False):
     """Load data and convert it to the metrics system."""
     path_dataset = "height_weight_genders.csv"
@@ -25,7 +24,10 @@ def load_data(sub_sample=True, add_outlier=False):
     if sub_sample:
         height = height[::50] # extract the first 50 values in height
         weight = weight[::50] # extract the first 50 values in weight
+        print("The shape of height is ", np.shape(height)) #(200, )
+        print("The shape of weight is ", np.shape(weight)) #(200, )
 
+    # 增加异常值
     if add_outlier:
         # outlier experiment
         height = np.concatenate([height, [1.1, 1.2]])
@@ -87,8 +89,7 @@ def batch_iter(y, tx, batch_size, num_batches=1, shuffle=True):
         shuffled_y = y
         shuffled_tx = tx
     for batch_num in range(num_batches):
-        start_index = batch_num * batch_size 
-        # what does this statement above mean? e.g. batch_size = 32
+        start_index = batch_num * batch_size
         end_index = min((batch_num + 1) * batch_size, data_size)
         if start_index != end_index:
             # yield可以理解为return，但程序下次会从这里再次运行
