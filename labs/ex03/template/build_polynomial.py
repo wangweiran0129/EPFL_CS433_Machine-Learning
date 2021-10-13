@@ -14,13 +14,14 @@ def build_poly(x, degree):
     # ***************************************************
     #raise NotImplementedError
     
-    ones = np.ones([np.shape(x)[0], 1])
+    # ones = np.ones([np.shape(x)[0], 1])
     
-    phi_xn = np.zeros([np.shape(x)[0], degree])
+    phi_xn = np.zeros([np.shape(x)[0], degree+1])
+    
     for i in range(np.shape(x)[0]):
-        for j in range(degree):
-            phi_xn[i][j] = pow(x[i], j+1)
+        for j in range(degree+1):
+            phi_xn[i][j] = pow(x[i], j)
             
-    phi = np.hstack((ones, phi_xn))
+    # phi = np.hstack((ones, phi_xn))
             
-    return phi
+    return phi_xn
