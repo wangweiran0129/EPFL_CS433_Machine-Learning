@@ -12,4 +12,14 @@ def build_poly(x, degree):
     # this function should return the matrix formed
     # by applying the polynomial basis to the input data
     # ***************************************************
-    raise NotImplementedError
+    # raise NotImplementedError
+
+    phi_xn = np.zeros([np.shape(x)[0], degree+1])
+    
+    for i in range(np.shape(x)[0]):
+        for j in range(degree+1):
+            phi_xn[i][j] = pow(x[i], j)
+            
+    # phi = np.hstack((ones, phi_xn))
+            
+    return phi_xn
